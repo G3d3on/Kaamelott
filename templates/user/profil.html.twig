@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block contain %}
+<div id="profil-container">
+    <h1>Vos Infos</h1>
+    {% for message in app.flashes('success') %}
+        {{ message }}
+    {% endfor %}
+    <div id="profil-infos-container">
+        <div id="profil-container-gauche">
+            <div id="profil-container-gauche-haut">
+                <img src=" /images/avatars/{{ app.user.avatar }}" alt="votre avatar">
+                <a href="#"><i class="fas fa-user-edit"></i></a>
+            </div>
+            <div id="profil-container-gauche-centre">
+                <p>{{ app.user.pseudo }}</p>
+                <p>{{ app.user.email }}</p>
+                <p>Changer votre mot de passe : <a href="{{ path('user_editPassword') }}"><i class="fas fa-key"></i></a></p>
+            </div>
+            <div id="profil-container-gauche-bas">
+                <a href="{{ path('user_edit') }}"><i class="fas fa-edit"></i></a>
+                <a href="{{ path('user_delete') }}"><i class="fas fa-user-times"></i></a>
+            </div>
+        </div>
+        <div id="profil-container-droite">
+            <div id="profil-container-droite-haut">
+                <p>Deck principal : <strong>{{ app.user.deck.nom }}</strong></p>
+            </div>
+            <div id="profil-container-droite-bas">
+                <article>
+                    <h2>Biographie</h2>
+                    <p>{{ app.user.bio }}</p>
+                </article>
+            </div>
+            <a href="{{ path('edit_bio') }}">Editée votre Biographie</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

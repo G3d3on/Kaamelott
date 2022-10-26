@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+
+{% block contain %}
+    <div class="formulaire">
+        <h1 class="formulaire-h1">Créer une carte</h1>
+        {% for message in app.flashes('success') %}
+            {{ message }}
+        {% endfor %}
+        {{ form_start(addCardForm) }}
+            <div class="add-carte">
+                <div class="add-carte-contour">
+                    <div class="add-carte-cadre-nom">
+                        <p class="add-carte-nom">{{ form_row(addCardForm.nom) }}</p>
+                    </div>
+                    <div class="add-carte-cadre-personnage">
+                        {{ form_row(addCardForm.imagePerso, { 'label_attr': {'class': 'labelUpload'}}) }}
+                        {{ form_row(addCardForm.attaque) }}
+                        {{ form_row(addCardForm.defense) }}
+                    </div>
+                    <div class="add-carte-cadre-description">
+                        <h5 class="add-carte-classe">{{ form_row(addCardForm.classe) }}</h5>
+                        <p class="add-carte-description">{{ form_row(addCardForm.description) }}</p>
+                    </div>
+                </div>
+            </div>
+            {{ form_row(addCardForm.prix, {
+                'label_attr': {'class': 'label'}
+            }) }}
+            <button type="submit" class="btn">Créer</button>
+        {{ form_end(addCardForm) }}
+            {# {{ form_row(addCardForm.imagePerso, {
+                'label_attr': {'class': 'label'}
+            }) }} #}
+
+    </div>
+{% endblock %}

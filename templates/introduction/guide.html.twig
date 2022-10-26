@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block contain %}
+<div id="guide-container">
+    <h1>Guide du débutant</h1>
+    <section>
+        <article id="guide-container-section-article1">
+            <p>Bienvenue dans le guide du débutant jeune chevalier ! Vous trouverez ici tous les détails sur les cartes et sur le déroulement d'une bataille entre chevalier.</p>
+            <p>En dessous vous trouverez le détail d'une carte : </p>
+        </article>
+        <article id="guide-container-section-article2">
+            <div id="carte-exemple">
+                <img src="/images/presentation/carte-kaamelott-exemple.jpg" alt="representation carte kaamelott">
+                <div id="image-perso">
+                    <p>image du personnage</p>
+                    <span><i class="fas fa-long-arrow-alt-right"></i></span>    
+                </div>
+                <div id="attaque-perso">
+                    <p>attaque</p>
+                    <span><i class="fas fa-long-arrow-alt-right"></i></span>
+                </div>
+                <div id="citation-perso">
+                    <p>citation</p>
+                    <span><i class="fas fa-long-arrow-alt-right"></i></span>
+                </div>
+                <div id="defense-perso">
+                    <span><i class="fas fa-long-arrow-alt-right"></i></span>
+                    <p>défense</p>
+                </div>
+                <div id="classe-perso">
+                    <span><i class="fas fa-long-arrow-alt-right"></i></span>
+                    <p>classe du personnage</p>
+                </div>
+                <div id="nom-perso">
+                    <span><i class="fas fa-long-arrow-alt-right"></i></span>
+                    <p>nom du personnage</p>
+                </div>
+            </div>
+        </article>
+        <article id="guide-container-section-article3">
+            <p>Sur le terrain ce trouve votre <span class="guide-upper-gradient">deck</span> composé de 25 cartes ainsi que le deck de votre adversaire composé lui aussi de 25 cartes. A chaque duel, chaque joueur dispose de 30 secondes pour piocher une carte de son deck et qui sera ensuite placer dans la case <span class="guide-upper-gradient">duel</span> de sa moitié de terrain (terrain bleu votre moitié, terrain rouge moitité de l'adversaire).</p> 
+            <p>Les points d'<span id="red">attaques</span> ainsi que les points de <span id="blue">défenses</span> de chaque carte sont additionnés pour ensuite être comparé avec la carte de l'adversaire, la carte dont le total est le plus élever remporte le duel. A la fin de chaque duel, des points sont attribuées en fonction du résultat de celui-ci. Une victoire octroie 3 points, une égalité 1 point et une défaite ne rapporte aucun points.</p> 
+            <p>Une fois le duel fini les deux cartes sont envoyées dans la case <span class="guide-upper-gradient">cimetière</span> de chaque joueurs. Une fois dans le cimetière, une carte n'est plus utilisable jusqu'a la fin de la partie. La bataille ce déroule ainsi jusqu'a ce que les deux joueurs ne possède plus de cartes dans leur deck. Une fois les decks vides, le total des points est comparés et le joueur ayant le plus de points remporte la bataille.</p>
+        </article>
+        <div id="partie-exemple">
+            <img src="/images/presentation/partie-exemple.jpg" alt="representation carte kaamelott">
+        </div>
+    </section>
+</div>
+{% endblock %}

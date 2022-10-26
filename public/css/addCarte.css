@@ -1,0 +1,157 @@
+::placeholder{
+    color: var(--text-noir);
+}
+
+.add-carte{
+    width: 450px;
+    height: 550px;
+    display: flex;
+    margin: auto;
+    z-index: 2;
+    color: black;
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+
+.add-carte-contour{
+    width: 100%;
+    height: 100%;
+    border: solid black 3px;
+    border-radius: 5px;
+    background-image: url('/images/cartes/fond-carte.jpg');
+    padding: 0.3em;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.add-carte-cadre-nom{
+    width: 95%;
+    height: 12%;
+    border: solid black  3px;
+    border-style: double;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin: auto;
+    padding: 0.2em;
+    color: var(--text-noir);
+}
+
+.add-carte-nom{
+    margin: 0;
+}
+
+#add_card_nom{
+    font-size: 2.8em;
+    padding: 0;
+    margin: 0;
+    font-family: 'Tangerine', cursive;
+    color: var(--text-noir);
+    text-align: center;
+}
+
+
+.add-carte-cadre-personnage{
+    width: 95%;
+    height: 60%;
+    border: solid rgb(170, 145, 4)  3px;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 0.5em;
+    background-position-y: 25%;
+    position: relative;
+}
+
+.labelUpload{
+    font-size: 2em;
+    font-weight: bold;
+    position: absolute;
+    top: 35%;
+    color: var(--text-blanc);
+}
+
+#add_card_imagePerso{
+    position: absolute;
+    top: 50%;
+}
+
+#add_card_attaque{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+    width: 15%;
+    height: 20%;
+    text-align: center;
+    border: solid black 2px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: red;
+    color: var(--text-noir);
+    background-image: none;
+}
+
+#add_card_defense{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+    width: 15%;
+    height: 20%;
+    text-align: center;
+    border: solid black 2px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: blue;
+    color: var(--text-blanc);
+    background-image: none;
+}
+
+.add-carte-cadre-description{
+    width: 95%;
+    height: 23.5%;
+    margin: auto;
+    padding: 0.2em;
+    margin-top: 0.5em;
+    border: solid black 3px;
+    border-style: double;
+    background-image: url('/images/cartes/fond-description.jpg');
+    background-size: cover;
+    position: relative;
+
+}
+
+#add_card_classe{
+    font-size: 2.5em;
+    padding: 0;
+    margin: 0;
+    font-family: 'Tangerine', cursive;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.2em;
+    background: linear-gradient(to bottom, #fcfdf8 0%, #ffcb46 5%, #ffe375 15%, #fdb761 30%, #fdb761 70%, #ffe375 85%, #ffcb46 95%, #fcfdf8 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+    position: absolute;
+    top: 0;
+}
+
+#add_card_description{
+    font-size: 1em;
+    font-family: 'Sawarabi Gothic', sans-serif;
+    text-align: center;
+    margin: 0;
+    font-style: italic;
+    color: var(--text-blanc);
+    position: absolute;
+    top: 40%;
+    width: 95%;
+    height: auto;
+    background-image: url('/images/cartes/fond-description.jpg');
+    background-size: cover;
+}
+
+#add_card_description::placeholder{
+    color: var(--text-blanc);
+}

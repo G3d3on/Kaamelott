@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block contain %}
+<div id="presentation-container">
+    <h1>Présentation du jeu</h1>
+    <section>
+        <article id="presentation-container-section-article1">
+            <p>Venez combattre a l'aide de vos personnages préféré contre des adversaires plus redoutables les uns que les autres. A l'heure ou le terrible Lancelot a mis a genoux tout le royaume de Logres, traquant inlassablement les compagnons d'Arthur Pendragon afin de les occires et que plus aucune résistance ne s'oppose a son règne.</p>
+            <img src="/images/presentation/carte-kaamelott.jpg" alt="">
+        </article>
+        <article id="presentation-container-section-article2">
+            <p>Prenez la place d'un ou d'une fidèle résistante, rassemblez vos compagnons et guidez les jusqu'a la victoire ultime ! Ou alors prenez place aux cotés du terrible Lancelot comme chasseur ou chasseuse de têtes et traquer sans relache les résistants qui continue de ce cacher et de fomenter une rébellion contre le pouvoir en place. Que décidez vous ? Allez vous aidez Arthur a renverser son plus vieille ami ? Ou allez vous tout faire pour l'empecher de reprendre place sur le trône.</p>
+            {# <img src="/images/presentation/carte-kaamelott-exemple.jpg" alt="representation carte kaamelott"> #}
+        </article>
+        <article id="presentation-container-section-article3">
+            <p>Pour combattre vous serez équipé d'un deck composé de 25 cartes que vous pourrez composé a votre guise. Afin de renforcer votre deck vous pourrez accéder a une boutique afin d'y acheter des cartes de vos personnages préférés.</p>
+            <div>
+                <img id="img1" src="/images/presentation/carte-kaamelott-exemple.jpg" alt="representation terrain ">
+                <img id="img2" src="/images/presentation/carte-kaamelott-exemple2.jpg" alt="representation terrain ">
+                <img id="img3" src="/images/presentation/carte-kaamelott-exemple3.jpg" alt="representation terrain ">
+            </div>
+        </article>
+        <p>Pour plus de détails venez consulter le<a href=" {{ path('guide') }} "> guide du débutant !</a></p>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block contain %}
+<div class="all-carte-container">
+    <h1>Liste des cartes</h1>
+    {% for message in app.flashes('success') %}
+        {{ message }}
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        {{ message }}
+    {% endfor %}
+    
+    <table class="carte-container">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Attaque</th>
+                <th>Défense</th>
+                <th>Classe</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Editer</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        {% for carte in cartes %}
+        <tbody>
+            <tr class="detail">
+                <td class="td-carte-nom">{{ carte.nom }}</td>
+                <td>{{ carte.attaque }}</td>
+                <td>{{ carte.defense }}</td>
+                <td>{{ carte.classe.nom }}</td>
+                <td>{{ carte.description|length > 50 ? carte.description|slice(0, 30) ~ '...' : carte.description }}</td>
+                <td>{{ carte.prix }}</td>
+                <td><a href="{{ path('edit_card', {'cardId': carte.id }) }}"><i class="fas fa-edit"></i></a></td>
+                <td><a href="{{ path('delete_card', {'cardId': carte.id }) }}"><i class="fas fa-trash-alt"></i></a></td>
+                
+                <td>
+                    <div class="carte" style="display: none">
+                        <div class="carte-contour">
+                            <div class="carte-cadre-nom">
+                                <p class="carte-nom">{{ carte.nom }}</p>
+                            </div>
+                            <div class="carte-cadre-personnage">
+                                <img class="carte-cadre-personnage-image" src="{{ '/images/cartes/personnages/' ~ carte.imagePerso }}" alt="image du personnage de la carte">
+                                <span class="carte-personnage-attaque">{{ carte.attaque }}</span>
+                                <span class="carte-personnage-defense">{{ carte.defense }}</span>
+                            </div>
+                            <div class="carte-cadre-description">
+                                <h5 class="carte-classe">{{ carte.classe.nom }}</h5>
+                                <p class="carte-description">"{{ carte.description }}"</p>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+   
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+ 
+        document.addEventListener("mouseover", (e) => {
+            if(e.target.classList.contains("td-carte-nom")){
+                const carte = e.target.parentNode.querySelector(".carte")
+                console.log(carte)
+                console.log(e.target.parentNode)
+                carte.style.display = "flex"
+                carte.style.position= "fixed"
+                carte.style.top = "30%"
+                carte.style.right = "0"
+            }
+        })
+        document.addEventListener("mouseout", (e) => {
+            if(e.target.classList.contains("td-carte-nom")){
+                document.querySelectorAll(".carte").forEach( (carte) => carte.style.display = "none" )
+            }
+        })
+
+    </script>
+{% endblock %}

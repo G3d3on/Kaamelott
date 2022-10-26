@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% set totalCartes = 0 %}
+{% for posses in possessions %}
+{% set totalCartes = totalCartes + posses.nbexemplaires %}
+{% endfor %}
+
+{% block contain %}
+<div class="all-carte-container">
+    <h1>Vos Cartes</h1>
+    {% for message in app.flashes('success') %}
+        {{ message }}
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        {{ message }}
+    {% endfor %}
+    <h2>Total des cartes en votre possession : {{ totalCartes }}</h2>
+    
+    <table class="carte-container">
+        <thead>
+            <tr>
+                <th>Nom de la carte</th>
+                <th>Nombre d'exemplaires</th>
+                <th>Vendre</th>
+                <th>Ajouter ou supprimer du deck</th>
+            </tr>
+        </thead>
+        {% for possession in possessions %}
+        <tbody>
+            <tr class="detail">
+                <td class="td-carte-nom">{{ possession.carte.nom }}</td>
+                <td>{{ possession.nbexemplaires }}</td>
+                
+                <td class="carte-piece">
+                    <a href="{{ path('sell_card', {'cardId':possession.carte.id}) }}">
+                        <img class="piece" src="/images/money.png" alt="">
+                        <p class="prix-vente">+{{ possession.carte.prix / 2 }}</p>
+                    </a>
+                </td>
+                <td class="plus-moins">
+                    <a href=" {{ path('remove_cardFromDeck', {'cardId':possession.carte.id}) }}"><i class="fas fa-minus-square"></i></a>
+                    <a href=" {{ path('assign_cardToDeck', {'cardId':possession.carte.id}) }}"><i class="fas fa-plus-square"></i></a>
+                </td>
+                <td>
+                    <div class="carte" style="display: none">
+                        <div class="carte-contour">
+                            <div class="carte-cadre-nom">
+                                <p class="carte-nom">{{ possession.carte.nom }}</p>
+                            </div>
+                            <div class="carte-cadre-personnage">
+                                <img class="carte-cadre-personnage-image" src="{{ '/images/cartes/personnages/persoGif/' ~ possession.carte.imagePerso }}" alt="image du personnage de la carte">
+                                <span class="carte-personnage-attaque">{{ possession.carte.attaque }}</span>
+                                <span class="carte-personnage-defense">{{ possession.carte.defense }}</span>
+                            </div>
+                            <div class="carte-cadre-description">
+                                <h5 class="carte-classe">{{ possession.carte.classe.nom }}</h5>
+                                <p class="carte-description">"{{ possession.carte.description }}"</p>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+   
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+ 
+        document.addEventListener("mouseover", (e) => {
+            if(e.target.classList.contains("td-carte-nom")){
+                const carte = e.target.parentNode.querySelector(".carte")
+                carte.style.display = "flex"
+                carte.style.position= "fixed"
+                carte.style.top = "30%"
+                carte.style.right = "0"
+            }
+        })
+        document.addEventListener("mouseout", (e) => {
+            if(e.target.classList.contains("td-carte-nom")){
+                document.querySelectorAll(".carte").forEach( (carte) => carte.style.display = "none" )
+            }
+        })
+
+    </script>
+{% endblock %}

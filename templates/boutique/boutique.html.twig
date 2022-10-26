@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block contain %}
+<div id="boutique-container">
+    <h1>La Boutique</h1>
+    {% for message in app.flashes('success') %}
+        {{ message }}
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        {{ message }}
+    {% endfor %}
+    <div id="boutique-cartes-container">
+    {% for carte in cartes %}
+    <div class="detail">
+        <p>Prix : {{ carte.prix }} pièces d'or</p>
+        <div class="carte">
+            <div class="carte-contour">
+                <div class="carte-cadre-nom">
+                    <p class="carte-nom">{{ carte.nom }}</p>
+                </div>
+                <div class="carte-cadre-personnage">
+                    <img class="carte-cadre-personnage-image" src="{{ '/images/cartes/personnages/' ~ carte.imagePerso }}" alt="image du personnage de la carte">
+                    <span class="carte-personnage-attaque">{{ carte.attaque }}</span>
+                    <span class="carte-personnage-defense">{{ carte.defense }}</span>
+                </div>
+                <div class="carte-cadre-description">
+                    <h5 class="carte-classe">{{ carte.classe.nom }}</h5>
+                    <p class="carte-description">"{{ carte.description }}"</p>
+                </div>
+            </div>
+        </div>
+        <div class="boutique-piece">
+            <a href="{{ path('buy_card', {'cardId':carte.id}) }}">
+                <img class="piece" src="/images/money.png" alt="">
+                <div class="hidden">
+                    <p>Acheter cette carte</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

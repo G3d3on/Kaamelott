@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block contain %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div class="formulaire">
+        <h1 class="formulaire-h1">Modifier vos informations</h1>
+        <h2>Après modification de votre adresse mail vous serez déconnecté !</h2>
+        {% for message in app.flashes('success') %}
+            {{ message }}
+        {% endfor %}
+        {{ form_start(editForm) }}
+            {{ form_row(editForm.pseudo, {
+                'label_attr': {'class': 'label'}
+            }) }}
+
+            {{ form_row(editForm.email, {
+                'label_attr': {'class': 'label'}
+            }) }} 
+
+            <button type="submit" class="btn">Valider</button>
+        {{ form_end(editForm) }}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Kaamelott{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="/css/mainStyle.css">
+            <link rel="stylesheet" href="/css/carte.css">
+            <link rel="stylesheet" href="/css/addCarte.css">
+            {# <link rel="stylesheet" href="/css/terrain.css"> #}
+            <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.css' integrity='sha512-E+53kXnJyuZFSz75xSmTfCpUNj3gp9Bd80TeQQMTPJTVWDRHPOpEYczGwWtsZXvaiz27cqvhdH8U+g/NMYua3A==' crossorigin='anonymous'/>
+            <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&family=Tangerine&family=Yanone+Kaffeesatz&family=Twinkle+Star&family=Dancing+Script&family=Inconsolata&family=Pacifico&family=Spectral&display=swap" rel="stylesheet">
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <a href="{{ path('home') }}"><img id="logo-accueil" src="/images/logo-kaamelott.jpg" alt="logo du site retour accueil"></a>
+            {% if is_granted('ROLE_USER') %}
+                <p id="user-money"><img src="/images/bourse.png" alt="bourse du joueur {{app.user.argent}}">{{ app.user.argent > 1 ? app.user.argent ~ " pièces d'or" : app.user.argent ~ " pièce d'or" }}</p>
+            {% endif %}
+            <nav id="nav-bar">
+            {# {% if is_granted('ROLE_USER') %}
+                <p id="file-attente">File d'attente /2</p>
+                <p id="user-level">Votre niveau : {{ app.user.niveau }}</p>
+                <progress id="barre-xp" value="{{ app.user.xp}}" max="100"></progress>
+            {% endif %} #}
+                <div id="nav-bar-gauche">
+                    <i id="burger" class="fas fa-bars"></i>
+                    <ul class="firstUl-gauche">
+                        <li class="deroulant deroulantJeu">
+                            <div>
+                                <p>Jeu</p>
+                                <i class="fas fa-sort-up fa-sort-up-jeu"></i>
+                            </div>
+                            <ul class="sous sousJeu">
+                                <li><a href=" {{ path('presentation') }} ">Présentation du jeu</a></li>
+                                <li><a href=" {{ path('guide') }} ">Guide du débutant</a></li>
+                                <li><a href=" {{ path('univers') }} ">L'univers de Kaamelott</a></li>
+                            </ul>
+                        </li>
+                        {% if is_granted('ROLE_USER') %}
+                        <li class="deroulant">
+                            <a href=" {{ path('boutique') }}">Boutique</a>
+                        </li>
+                        {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li class="deroulant deroulantAdmin">
+                            <div>
+                                <p>Admin</p>
+                                <i class="fas fa-sort-up fa-sort-up-admin"></i>
+                            </div>
+                            <ul class="sous sousAdmin">
+                                <li><a href=" {{ path('create_card') }}">Création de carte</a></li>
+                                <li><a href=" {{ path('show_cards') }}">Liste des cartes</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                {% if is_granted('ROLE_USER') %}
+                <div id="nav-bar-centre">
+                    <a href=" {{ path('terrain') }}" target="blank">Recherche de partie</a>
+                </div>
+                {% endif %}
+                {% if is_granted('ROLE_USER') %}
+                <div id="nav-bar-droite">
+                    <i id="burgerUser" class="fa-solid fa-user-gear"></i>
+                    <ul class="firstUl-droite">
+                        <p>Bienvenue : </p>
+                        <li class="deroulant deroulantUser">
+                            <div>
+                                <span>{{ app.user.pseudo }}</span>
+                                <i class="fas fa-sort-up"></i>
+                            </div>
+                            <ul class="sous sousUser">
+                                <li><a href=" {{ path('profil') }} ">Vos infos</a></li>
+                                <li><a href=" {{ path('deck') }} ">Votre deck</a></li>
+                                <li><a href=" {{ path('cartes') }} ">Vos cartes</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i></a>
+                </div>
+                {% else %}
+                <div id="nav-bar-droite2">
+                    <a href="{{ path('app_register') }}">S'inscrire</a>
+                    <a href="{{ path('app_login') }}">Se connecter</a>
+                </div>
+                {% endif %}
+            </nav>
+        </header>
+        <main>
+            <div id="wrapper">
+                {% block contain %}
+                
+                {% endblock %}
+            </div>
+                {% block field %}
+                
+                {% endblock %}
+        </main>
+        <footer id="footer">
+            <p id="copy">&#169 2022 Le gras c'est la vie</p>
+            <p id="mentions"><a href='/mentions.pdf' target='blank'>mentions légales</a></p>
+        </footer>
+        {% block javascripts %}
+            <script>
+                const burger = document.querySelector("#burger");
+                const burgerUser = document.querySelector("#burgerUser");
+                const firstUlGauche = document.querySelector(".firstUl-gauche");
+                const firstUlDroite = document.querySelector(".firstUl-droite");
+                const deroulantJeu = document.querySelector(".deroulantJeu");
+                const deroulantAdmin = document.querySelector(".deroulantAdmin");
+                const deroulantUser = document.querySelector(".deroulantUser");
+                const sousJeu = document.querySelector(".sousJeu");
+                const sousAdmin = document.querySelector(".sousAdmin");
+                const sousUser = document.querySelector(".sousUser");
+                const arrowJeu = document.querySelector(".fa-sort-up-jeu");
+                const arrowAdmin = document.querySelector(".fa-sort-up-admin");
+                // var arrow = document.querySelector(".fa-sort-up")
+
+                burger.addEventListener('click', function(){
+                    if (burger.classList.contains('fa-bars')) {
+                        burger.classList.replace('fa-bars', 'fa-times')
+                        firstUlGauche.classList.toggle('show-menu')  
+                        
+                    } else{
+                        burger.classList.replace('fa-times', 'fa-bars')
+                        firstUlGauche.classList.toggle('show-menu')  
+                    } 
+                    if (sousAdmin.classList.contains('show-menu')) {
+                        arrowAdmin.classList.remove('turn')
+                        sousAdmin.classList.remove('show-menu')
+                    }
+                    if (sousJeu.classList.contains('show-menu')) {
+                        arrowJeu.classList.remove('turn')
+                        sousJeu.classList.remove('show-menu') 
+                    }
+                    if (firstUlDroite.classList.contains('show-menu')) { 
+                        sousUser.classList.toggle('show-menu')  
+                        deroulantUser.classList.toggle('show-menu') 
+                        firstUlDroite.classList.remove('show-menu')
+                    }
+                })
+
+                deroulantJeu.addEventListener('click', function(){
+                        arrowJeu.classList.toggle('turn')
+                        sousJeu.classList.toggle('show-menu') 
+                        if (sousAdmin.classList.contains('show-menu')) {
+                            arrowAdmin.classList.remove('turn')
+                            sousAdmin.classList.remove('show-menu')
+                        }
+                })
+
+                deroulantAdmin.addEventListener('click', function(){
+                        arrowAdmin.classList.toggle('turn')
+                        sousAdmin.classList.toggle('show-menu') 
+                        if (sousJeu.classList.contains('show-menu')) {
+                            arrowJeu.classList.remove('turn')
+                            sousJeu.classList.remove('show-menu') 
+                        }
+                })
+
+                burgerUser.addEventListener('click', function(){
+                    firstUlDroite.classList.toggle('show-menu')  
+                    deroulantUser.classList.toggle('show-menu')  
+                    sousUser.classList.toggle('show-menu')  
+                    if (firstUlGauche.classList.contains('show-menu')) {
+                        firstUlGauche.classList.remove('show-menu') 
+                        burger.classList.replace('fa-times', 'fa-bars')
+                    }
+                })
+            </script>
+        {% endblock %}
+    </body>
+</html>

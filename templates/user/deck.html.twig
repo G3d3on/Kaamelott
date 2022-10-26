@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+
+{% block contain %}
+<div id="all-deck-container">
+    <h1>Votre Deck</h1>
+    <div id="deck-container">
+    {% for d in deck %}
+        <div class="deck">
+            <h2>{{ d.nom }}</h2>
+            <div class="carte">
+                <a href="{{ path('deck_detail', {'id': d.id}) }}"><img src="/images/cartes/carte-verso.jpg" alt="images du verso de votre deck"></a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

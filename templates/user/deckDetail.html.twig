@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+
+{% set totalCartes = 0 %}
+{% set nom = '' %}
+{% for compos in compositions %}
+{% set totalCartes = totalCartes + compos.nbexemplaires %}
+{% endfor %}
+
+{% block contain %}
+<div id="deck-detail-container">
+    <h1>Détail du Deck</h1>
+    {% for message in app.flashes('success') %}
+        {{ message }}
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        {{ message }}
+    {% endfor %}
+    <h2>Total de cartes dans le deck : {{ totalCartes }}/25</h2>
+    <div id="detail-container">
+    {% for comp in compositions %}
+        <div class="detail">
+            <div class="carte">
+                <div class="carte-contour">
+                    <div class="carte-cadre-nom">
+                        <p class="carte-nom">{{ comp.carte.nom }}</p>
+                    </div>
+                    <div class="carte-cadre-personnage">
+                        <img class="carte-cadre-personnage-image" src="{{ '/images/cartes/personnages/persoGif/' ~ comp.carte.imagePerso }}" alt="image du personnage de la carte">
+                        <span class="carte-personnage-attaque">{{ comp.carte.attaque }}</span>
+                        <span class="carte-personnage-defense">{{ comp.carte.defense }}</span>
+                    </div>
+                    <div class="carte-cadre-description">
+                        <h5 class="carte-classe">{{ comp.carte.classe.nom }}</h5>
+                        <p class="carte-description">"{{ comp.carte.description }}"</p>
+                    </div>
+                </div>
+            </div>
+            <p>Nombre d'exemplaires dans ce deck : {{ comp.nbexemplaires }}</p>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

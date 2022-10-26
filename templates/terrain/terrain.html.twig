@@ -1,0 +1,25 @@
+
+<title>{% block title %}Kaamelott{% endblock %}</title>
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/css/mainStyle.css">
+    <link rel="stylesheet" href="/css/carte.css">
+    <link rel="stylesheet" href="/css/terrain.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css' integrity='sha512-vZWT27aGmde93huNyIV/K7YsydxaafHLynlJa/4aPy28/R1a/IxewUH4MWo7As5I33hpQ7JS24kwqy/ciIFgvg==' crossorigin='anonymous'/>
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&family=Tangerine&family=Yanone+Kaffeesatz&family=Twinkle+Star&family=Dancing+Script&family=Inconsolata&family=Pacifico&family=Spectral&display=swap" rel="stylesheet">
+{% endblock %}
+
+
+<div id="plateau"></div>
+
+{% block javascript %}
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- Charge notre composant React -->
+    <script src="/js/players.js"></script>
+    <script type="text/babel" src="/js/board.js"></script>
+    <script type="text/babel" src="/js/card.js"></script>
+    
+{% endblock %}

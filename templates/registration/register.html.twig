@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+
+{% block contain %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div class="formulaire">
+        <h1 class="formulaire-h1">Inscrivez vous</h1>
+        {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.pseudo, {
+                'label_attr': {'class': 'label'}
+            }) }}
+
+            {{ form_row(registrationForm.email, {
+                'label_attr': {'class': 'label'}
+            }) }} 
+
+            {{ form_row(registrationForm.plainPassword.first, {
+                'label_attr': {'class': 'label'}
+            }) }}
+            {{ form_errors(registrationForm.plainPassword.first) }}
+
+            {{ form_row(registrationForm.plainPassword.second, {
+                'label_attr': {'class': 'label'}
+            }) }}
+            {{ form_errors(registrationForm.plainPassword.second) }}
+            {{ form_row(registrationForm.agreeTerms) }}
+
+            <button type="submit" class="btn">S'inscrire</button>
+        {{ form_end(registrationForm) }}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{
+  "devDependencies": {
+    "@hotwired/stimulus": "^3.0.0",
+    "@symfony/stimulus-bridge": "^3.0.0",
+    "@symfony/webpack-encore": "^0.24.0",
+    "core-js": "^3.0.0",
+    "regenerator-runtime": "^0.13.2",
+    "webpack-notifier": "^1.6.0"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production --progress"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-app": "^3.1.2",
+    "prop-types": "^15.8.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "name": "kaamelott",
+  "version": "1.0.0",
+  "main": "webpack.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": [],
+  "author": "",
+  "description": ""
+}

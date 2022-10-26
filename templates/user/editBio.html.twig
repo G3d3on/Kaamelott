@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block contain %}
+<div id="bio-container">
+    <h1>Biographie</h1>
+    {% for message in app.flashes('success') %}
+        {{ message }}
+    {% endfor %}
+    <h2>Max 350 caractères !</h2>
+    <form action="{{ path('edit_bio') }}" method="POST">
+        <textarea id="bio" rows="10" cols="70" maxlength="350" name="biographie" placeholder="Taper votre biographie">{{ app.user.bio }}</textarea>
+        <button class="btn" type="submit">Postée votre bio</button>
+    </form>
+</div>
+{% endblock %}
