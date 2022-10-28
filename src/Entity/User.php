@@ -49,7 +49,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="integer")
      */
-    private $argent = 200;
+    private $argent = 500;
 
     /**
      * @ORM\Column(type="integer")
